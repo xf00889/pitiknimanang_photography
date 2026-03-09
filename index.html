@@ -11,6 +11,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
 
+  <link rel="preload" href="/css/style.css" as="style">
+  <link rel="preload" href="/js/script.js" as="script">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
@@ -91,17 +97,17 @@
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <div class="hero-media has-parallax absolute inset-0" data-parallax="0.2">
-                <img class="h-full w-full object-cover" src="https://picsum.photos/seed/jzanaia-hero-1/1920/1200" alt="Luxury editorial portrait" fetchpriority="high">
+                <img class="h-full w-full object-cover" src="https://picsum.photos/seed/jzanaia-hero-1/1920/1200" alt="Luxury editorial portrait" fetchpriority="high" width="1920" height="1200">
               </div>
             </div>
             <div class="swiper-slide">
               <div class="hero-media has-parallax absolute inset-0" data-parallax="0.24">
-                <img class="h-full w-full object-cover" src="https://picsum.photos/seed/jzanaia-hero-2/1920/1200" alt="Cinematic landscape photography" loading="eager">
+                <img class="h-full w-full object-cover" src="https://picsum.photos/seed/jzanaia-hero-2/1920/1200" alt="Cinematic landscape photography" loading="eager" width="1920" height="1200">
               </div>
             </div>
             <div class="swiper-slide">
               <div class="hero-media has-parallax absolute inset-0" data-parallax="0.22">
-                <img class="h-full w-full object-cover" src="https://picsum.photos/seed/jzanaia-hero-3/1920/1200" alt="Street photography at dusk" loading="eager">
+                <img class="h-full w-full object-cover" src="https://picsum.photos/seed/jzanaia-hero-3/1920/1200" alt="Street photography at dusk" loading="eager" width="1920" height="1200">
               </div>
             </div>
           </div>
@@ -171,7 +177,7 @@
           <div class="relative" data-aos="fade-right" data-aos-duration="1100">
             <div class="absolute -left-4 top-8 hidden h-52 w-52 rounded-full bg-sand/10 blur-3xl lg:block"></div>
             <div class="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 shadow-soft">
-              <img class="has-parallax h-[32rem] w-full object-cover sm:h-[40rem]" src="./img/hero.jpg" alt="Portrait of photographer Jzanaia Sybil Valiao Portal" loading="l              <img class="has-parallax h-[32rem] w-full object-cover sm:h-[40rem]" src="/img/hero.jpg" alt="Portrait of photographer Jzanaia Sybil Valiao Portal" loading="lazy" data-parallax="0.08">
+              <img class="has-parallax h-[32rem] w-full object-cover sm:h-[40rem]" src="./img/hero.jpg" alt="Portrait of photographer Jzanaia Sybil Valiao Portal" loading="l              <img class="has-parallax h-[32rem] w-full object-cover sm:h-[40rem]" src="/img/hero.jpg" alt="Portrait of photographer Jzanaia Sybil Valiao Portal" loading="lazy" data-parallax="0.08" width="960" height="1280">
             </div>
             <div class="absolute -bottom-6 right-6 max-w-[260px] rounded-[2rem] border border-white/10 bg-black/65 p-5 backdrop-blur-2xl">
               <p class="text-[0.68rem] uppercase tracking-[0.3em] text-sand/70">Signature Style</p>
@@ -284,13 +290,13 @@
 
           <div class="slider-container mt-12" data-aos="fade-up">
             <div class="slider-track" id="digital-art-slider">
-              <div class="slider-item"><img src="/img/d1.jpg" alt="Digital Art 1" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/d2.jpg" alt="Digital Art 2" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/d3.jpg" alt="Digital Art 3" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/d4.jpg" alt="Digital Art 4" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/d5.jpg" alt="Digital Art 5" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/d6.jpg" alt="Digital Art 6" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/d7.jpg" alt="Digital Art 7" loading="lazy"></div>
+              <div class="slider-item"><img src="/img/d1.jpg" alt="Digital Art 1" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/d2.jpg" alt="Digital Art 2" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/d3.jpg" alt="Digital Art 3" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/d4.jpg" alt="Digital Art 4" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/d5.jpg" alt="Digital Art 5" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/d6.jpg" alt="Digital Art 6" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/d7.jpg" alt="Digital Art 7" loading="lazy" width="350" height="450"></div>
             </div>
           </div>
         </div>
@@ -311,30 +317,30 @@
 
           <div class="slider-container mt-12" data-aos="fade-up">
             <div class="slider-track slider-reverse" id="works-slider">
-              <div class="slider-item"><img src="/img/1.jpg" alt="Work 1" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/2.jpg" alt="Work 2" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/3.jpg" alt="Work 3" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/4.jpg" alt="Work 4" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/5.jpg" alt="Work 5" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/6.jpg" alt="Work 6" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/7.jpg" alt="Work 7" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/8.jpg" alt="Work 8" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/9.jpg" alt="Work 9" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/10.jpg" alt="Work 10" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/11.jpg" alt="Work 11" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/12.jpg" alt="Work 12" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/13.jpg" alt="Work 13" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/14.jpg" alt="Work 14" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/15.jpg" alt="Work 15" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/16.jpg" alt="Work 16" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/17.jpg" alt="Work 17" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/18.jpg" alt="Work 18" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/19.jpg" alt="Work 19" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/20.jpg" alt="Work 20" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/21.jpg" alt="Work 21" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/22.jpg" alt="Work 22" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/23.jpg" alt="Work 23" loading="lazy"></div>
-              <div class="slider-item"><img src="/img/24.jpg" alt="Work 24" loading="lazy"></div>
+              <div class="slider-item"><img src="/img/1.jpg" alt="Work 1" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/2.jpg" alt="Work 2" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/3.jpg" alt="Work 3" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/4.jpg" alt="Work 4" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/5.jpg" alt="Work 5" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/6.jpg" alt="Work 6" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/7.jpg" alt="Work 7" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/8.jpg" alt="Work 8" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/9.jpg" alt="Work 9" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/10.jpg" alt="Work 10" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/11.jpg" alt="Work 11" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/12.jpg" alt="Work 12" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/13.jpg" alt="Work 13" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/14.jpg" alt="Work 14" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/15.jpg" alt="Work 15" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/16.jpg" alt="Work 16" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/17.jpg" alt="Work 17" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/18.jpg" alt="Work 18" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/19.jpg" alt="Work 19" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/20.jpg" alt="Work 20" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/21.jpg" alt="Work 21" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/22.jpg" alt="Work 22" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/23.jpg" alt="Work 23" loading="lazy" width="350" height="450"></div>
+              <div class="slider-item"><img src="/img/24.jpg" alt="Work 24" loading="lazy" width="350" height="450"></div>
 h2 class="section-title" data-aos="fade-up" data-aos-delay="100">CLIENT TESTIMONIALS</h2>
             <p class="mx-auto mt-8 max-w-2xl text-base leading-8 text-white/60" data-aos="fade-up" data-aos-delay="180">
               What clients say about working with me
