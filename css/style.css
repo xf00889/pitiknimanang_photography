@@ -749,11 +749,11 @@ img {
   display: flex;
   gap: 1.25rem;
   width: max-content;
-  animation: barrageScrollLeft 50s linear infinite;
+  animation: barrageScrollLeft 35s linear infinite;
 }
 
 .barrage-reverse {
-  animation: barrageScrollRight 50s linear infinite;
+  animation: barrageScrollRight 35s linear infinite;
 }
 
 .barrage-track:hover {
@@ -864,11 +864,11 @@ img {
   }
   
   .barrage-track {
-    animation-duration: 35s;
+    animation-duration: 25s;
   }
   
   .barrage-reverse {
-    animation-duration: 35s;
+    animation-duration: 25s;
   }
 }
 
