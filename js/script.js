@@ -318,7 +318,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Reviews System with JSON file (visible to all visitors)
   const reviewsRow1 = document.getElementById("reviews-row-1");
   const reviewsRow2 = document.getElementById("reviews-row-2");
-  const reviewsRow3 = document.getElementById("reviews-row-3");
   const reviewForm = document.getElementById("review-form");
   const starButtons = Array.from(document.querySelectorAll(".star-btn"));
   const ratingInput = document.getElementById("review-rating");
@@ -365,36 +364,26 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
         reviewsRow2.innerHTML = '';
-        reviewsRow3.innerHTML = '';
         return;
       }
 
       // Sort reviews by timestamp (newest first)
       const sortedReviews = reviews.sort((a, b) => b.timestamp - a.timestamp);
       
-      // Duplicate reviews to create seamless loop
-      const reviewsHTML = sortedReviews.map(createReviewCard).join('');
-      const duplicatedHTML = reviewsHTML + reviewsHTML;
+      // Split reviews into two rows
+      const midpoint = Math.ceil(sortedReviews.length / 2);
+      const row1Reviews = sortedReviews.slice(0, midpoint);
+      const row2Reviews = sortedReviews.slice(midpoint);
       
-      // Distribute reviews across three rows
-      // For better visual effect, we'll split them differently
-      const reviewsPerRow = Math.ceil(sortedReviews.length / 3);
+      // Create HTML for each row - duplicate once for seamless loop
+      const row1HTML = row1Reviews.map(createReviewCard).join('');
+      const row2HTML = row2Reviews.length > 0 
+        ? row2Reviews.map(createReviewCard).join('')
+        : row1HTML; // Use row1 reviews if we don't have enough for row2
       
-      const row1Reviews = sortedReviews.slice(0, reviewsPerRow);
-      const row2Reviews = sortedReviews.slice(reviewsPerRow, reviewsPerRow * 2);
-      const row3Reviews = sortedReviews.slice(reviewsPerRow * 2);
-      
-      // If we have enough reviews, distribute them; otherwise duplicate
-      if (sortedReviews.length >= 6) {
-        reviewsRow1.innerHTML = row1Reviews.map(createReviewCard).join('') + row1Reviews.map(createReviewCard).join('');
-        reviewsRow2.innerHTML = row2Reviews.map(createReviewCard).join('') + row2Reviews.map(createReviewCard).join('');
-        reviewsRow3.innerHTML = row3Reviews.map(createReviewCard).join('') + row3Reviews.map(createReviewCard).join('');
-      } else {
-        // For fewer reviews, duplicate across all rows
-        reviewsRow1.innerHTML = duplicatedHTML;
-        reviewsRow2.innerHTML = duplicatedHTML;
-        reviewsRow3.innerHTML = duplicatedHTML;
-      }
+      // Duplicate content for seamless infinite scroll
+      reviewsRow1.innerHTML = row1HTML + row1HTML;
+      reviewsRow2.innerHTML = row2HTML + row2HTML;
 
     } catch (error) {
       console.error("Error loading reviews:", error);
@@ -404,7 +393,6 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
       reviewsRow2.innerHTML = '';
-      reviewsRow3.innerHTML = '';
     }
   };
 
