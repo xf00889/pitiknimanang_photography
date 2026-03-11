@@ -315,35 +315,20 @@ document.addEventListener("DOMContentLoaded", () => {
   initEndlessSlider("digital-art-slider");
   initEndlessSlider("works-slider");
 
-  // Reviews System with localStorage (Optimized for storage)
-  const reviewsKey = "portfolio_reviews";
-  const maxReviews = 50; // Limit total reviews to save storage
+  // Reviews System with JSON file (visible to all visitors)
   const reviewsGrid = document.getElementById("reviews-grid");
   const reviewForm = document.getElementById("review-form");
   const starButtons = Array.from(document.querySelectorAll(".star-btn"));
   const ratingInput = document.getElementById("review-rating");
 
-  // Compress review data to save space
-  const compressReview = (review) => ({
-    n: review.name.substring(0, 30), // Limit name to 30 chars
-    m: review.message.substring(0, 200), // Limit message to 200 chars
-    r: review.rating,
-    t: review.timestamp
-  });
-
-  // Decompress review data
-  const decompressReview = (compressed) => ({
-    name: compressed.n,
-    message: compressed.m,
-    rating: compressed.r,
-    timestamp: compressed.t
-  });
-
-  // Load reviews from localStorage
-  const loadReviews = () => {
+  // Load reviews from Cloudflare Pages Function
+  const loadReviews = async () => {
     try {
-      const compressed = JSON.parse(localStorage.getItem(reviewsKey)) || [];
-      const reviews = compressed.map(decompressReview).filter(r => r.name && r.message);
+      const response = await fetch('/api/reviews');
+      const allReviews = await response.json();
+      
+      // Only show approved reviews
+      const reviews = allReviews.filter(r => r.approved !== false);
       
       if (reviews.length === 0) {
         reviewsGrid.innerHTML = `
@@ -387,33 +372,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (error) {
       console.error("Error loading reviews:", error);
-      // Clear corrupted data
-      localStorage.removeItem(reviewsKey);
       reviewsGrid.innerHTML = `
         <div class="col-span-full text-center py-12">
-          <p class="text-white/50 text-lg">No reviews yet. Be the first to leave a review!</p>
+          <p class="text-white/50 text-lg">Unable to load reviews. Please try again later.</p>
         </div>
       `;
     }
-  };
-
-  // Save review to localStorage with optimization
-  const saveReview = (review) => {
-    let reviews = JSON.parse(localStorage.getItem(reviewsKey)) || [];
-    
-    // Add new compressed review
-    reviews.push(compressReview(review));
-    
-    // Keep only the most recent reviews if limit exceeded
-    if (reviews.length > maxReviews) {
-      reviews = reviews
-        .map(decompressReview)
-        .sort((a, b) => b.timestamp - a.timestamp)
-        .slice(0, maxReviews)
-        .map(compressReview);
-    }
-    
-    localStorage.setItem(reviewsKey, JSON.stringify(reviews));
   };
 
   // Star rating interaction
@@ -448,8 +412,8 @@ document.addEventListener("DOMContentLoaded", () => {
     icon.className = "ri-star-fill text-2xl";
   });
 
-  // Handle form submission
-  reviewForm?.addEventListener("submit", (event) => {
+  // Handle form submission via Cloudflare Pages Function
+  reviewForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const name = document.getElementById("review-name").value.trim();
@@ -461,28 +425,39 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const review = {
-      name,
-      message,
-      rating,
-      timestamp: Date.now()
-    };
+    try {
+      const response = await fetch('/api/reviews', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, message, rating })
+      });
 
-    saveReview(review);
-    loadReviews();
-    reviewForm.reset();
-    
-    // Reset stars to 5
-    selectedRating = 5;
-    ratingInput.value = 5;
-    starButtons.forEach((btn) => {
-      btn.classList.add("active");
-      const icon = btn.querySelector("i");
-      icon.className = "ri-star-fill text-2xl";
-    });
-
-    // Scroll to reviews
-    reviewsGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+      const result = await response.json();
+      
+      if (response.ok) {
+        alert(result.message || "Thank you for your review!");
+        reviewForm.reset();
+        
+        // Reset stars to 5
+        selectedRating = 5;
+        ratingInput.value = 5;
+        starButtons.forEach((btn) => {
+          btn.classList.add("active");
+          const icon = btn.querySelector("i");
+          icon.className = "ri-star-fill text-2xl";
+        });
+        
+        // Reload reviews to show the new one
+        loadReviews();
+      } else {
+        alert(result.error || "Failed to submit review. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      alert("Failed to submit review. Please check your connection and try again.");
+    }
   });
 
   // Load reviews on page load
