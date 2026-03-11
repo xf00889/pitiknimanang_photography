@@ -462,14 +462,15 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (error) {
         console.error("Error submitting review:", error);
         
-        // Retry on connection errors (cold start)
+        // Retry on connection errors (cold start) - silently
         if (retries > 0 && error.message.includes('fetch')) {
           console.log(`Retrying... (${retries} attempts left)`);
           await new Promise(resolve => setTimeout(resolve, 1000));
           return submitReview(retries - 1);
         }
         
-        alert("Failed to submit review. Error: " + error.message);
+        // Only show error if all retries failed
+        alert("Failed to submit review. Please try again.");
       }
     };
 
